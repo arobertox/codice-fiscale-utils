@@ -6,6 +6,7 @@ import moment from 'moment';
 import Omocode from './omocode.enum';
 import Parser from './parser';
 import VALIDATOR from './validator.const';
+import Belfiore from './belfiore';
 
 /**
  * @namespace Validator
@@ -19,7 +20,7 @@ class Validator {
      * @public
      */
     static cfSurname(surname) {
-        let matcher = VALIDATOR.NAME_MATCHER;
+        let matcher = VALIDATOR.SURNAME_MATCHER;
         if (surname) {
             matcher = Parser.surnameToCf(surname) || matcher;
         }
@@ -376,7 +377,7 @@ class Validator {
      * Check the given cf validity by form, birth date/place and digit code
      * 
      * @param {string} codiceFiscale Complete CF to parse
-     * @returns {boolean} Generic or specific regular expression
+     * @returns {boolean}
      * @public
      */
     static isValid(codiceFiscale) {
@@ -392,6 +393,31 @@ class Validator {
             return false;
         }
         return true;
+    }
+    
+    /**
+     * Check the given cf validity by form, birth date/place and digit code
+     * 
+     * @param {string} codiceFiscale Complete CF to parse
+     * @returns {Object} Checklist
+     * @public
+     */
+    static analyze(codiceFiscale) {
+        const {
+            surname,
+            name,
+            year, month, day,
+            place
+        } = Parser.cfDecode(codiceFiscale);
+
+        return {
+            surname: !!surname,
+            name: !!name,
+            date: !!(year && typeof month === 'number' && day),
+            place: (Belfiore[codiceFiscale.substr(11,4).toUpperCase()] || {}).name,
+            placeDate: !!place,
+            checkDigit: codiceFiscale.substr(15, 1).toUpperCase() === CheckDigitizer.checkDigit(codiceFiscale)
+        };
     }
 }
 

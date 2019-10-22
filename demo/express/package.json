@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "preinstall": "npx link-module-alias"
   },
   "author": "Marco Ricupero <marco.ricupero@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@marketto/codice-fiscale-utils": "file:./../..",
     "express": "^4.17.1"
+  },
+  "_moduleAliases": {
+    "@marketto/codice-fiscale-utils": "./../../.."
   }
 }

@@ -872,8 +872,10 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
-"@marketto/codice-fiscale-utils@file:./../..":
-  version "1.0.4"
+"@marketto/codice-fiscale-utils@^1.x":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@marketto/codice-fiscale-utils/-/codice-fiscale-utils-1.1.1.tgz#d39a33d4e55d924449f1458af35093b93b52e1aa"
+  integrity sha512-UfZi156E+ETn0Q9OUM8IdXXwrslpNICjVaQcGDDq5Ob9dbf6AzhB5MrA1Pbw0ymkQMGyZL4zsgzWwcsmQk5d2A==
   dependencies:
     moment "^2.24.0"
 

@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
+    "preinstall": "npx link-module-alias",
     "serve": "npx vue-cli-service serve",
     "build": "npx vue-cli-service build",
     "lint": "npx vue-cli-service lint"
@@ -14,7 +15,6 @@
   "author": "Marco Ricupero <marco.ricupero@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@marketto/codice-fiscale-utils": "file:./../..",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.27",
     "core-js": "^2.6.5",
@@ -29,6 +29,9 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.6.10"
+  },
+  "_moduleAliases": {
+    "@marketto/codice-fiscale-utils": "./../../.."
   },
   "eslintConfig": {
     "root": true,

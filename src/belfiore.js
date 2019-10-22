@@ -152,8 +152,7 @@ class Belfiore{
 
     /**
      * Returns a Proxied version of Belfiore which filters results by place type
-     * @readonly
-     * @returns {Belfiore} Belfiore instance filtered by cities
+     * @property {Belfiore} Belfiore instance filtered by cities
      * @public
      */
     get cities() {
@@ -168,8 +167,7 @@ class Belfiore{
 
     /**
      * Returns a Proxied version of Belfiore which filters results by place type
-     * @readonly
-     * @returns {Belfiore} Belfiore instance filtered by countries
+     * @property {Belfiore} Belfiore instance filtered by countries
      * @public
      */
     get countries() {

@@ -15,8 +15,7 @@ class Parser {
 
     /**
      * Default omocode bitmap
-     * @readonly
-     * @returns {number} Omocode bitmap number
+     * @property {number} Omocode bitmap number
      * @public
      */
     static get OMOCODE_BITMAP(){

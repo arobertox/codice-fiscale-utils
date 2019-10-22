@@ -100,6 +100,7 @@ const core = {
     /**
      * Group diacritics by the given RegExp
      *
+     * @namespace Diacritics
      * @param {RegExp} regexp Matching criteria to filter diacritics
      * @returns {string}
      */

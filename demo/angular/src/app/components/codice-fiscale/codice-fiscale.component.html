@@ -1,0 +1,6 @@
+<form [formGroup]="personForm">
+    <mat-form-field>
+        <input matInput placeholder="Codice Fiscale" formControlName="cf" maxlength="16" minlength="16" required />
+        <mat-error *ngIf="cf.invalid">{{getErrorMessage(cf)}}</mat-error>
+    </mat-form-field>
+</form>
