@@ -133,8 +133,18 @@ describe('CodiceFiscaleUtils:Parser', () => {
         });
 
         describe('cfToBirthMonth', () => {
-            it('Should return the month', () => {
+            it('Should return 0 for A (January)', () => {
+                Parser.cfToBirthMonth('XXXYYY80A28').should.be.equal(0);
+            });
+            it('Should return 1 for B (February)', () => {
+                Parser.cfToBirthMonth('XXXYYY71B28').should.be.equal(1);
+            });
+            it('Should return 2 for C (March)', () => {
                 Parser.cfToBirthMonth('XXXYYY92C').should.be.equal(2);
+                Parser.cfToBirthMonth('XXXYYY83C23').should.be.equal(2);
+            });
+            it('Should return 6 for L (July)', () => {
+                Parser.cfToBirthMonth('XXXYYY82L26').should.be.equal(6);
             });
             it('Should return null', () => {
                 expect(Parser.cfToBirthDate('XXXYYY90J')).to.be.null;
@@ -162,15 +172,27 @@ describe('CodiceFiscaleUtils:Parser', () => {
         });
 
         describe('cfToBirthDate', () => {
-            it('Should return a Date (Male)', () => {
+            it('Should return a Date (Male) 92B20', () => {
                 const bdt = Parser.cfToBirthDate('XXXYYY92B20');
-                //bdt.toJSON().should.be.equal('1992-02-20');
+                bdt.toJSON().substr(0, 10).should.be.equal('1992-02-20');
                 bdt.getDate().should.be.equal(20);
                 bdt.getMonth().should.be.equal(1);
             });
+            it('Should return a Date (Male) 82L26', () => {
+                const bdt = Parser.cfToBirthDate('XXXYYY82L26');
+                bdt.toJSON().substr(0, 10).should.be.equal('1982-07-26');
+                bdt.getDate().should.be.equal(26);
+                bdt.getMonth().should.be.equal(6);
+            });
+            it('Should return a Date (Male) 83C23', () => {
+                const bdt = Parser.cfToBirthDate('XXXYYY83C23');
+                bdt.toJSON().substr(0, 10).should.be.equal('1983-03-23');
+                bdt.getDate().should.be.equal(23);
+                bdt.getMonth().should.be.equal(2);
+            });
             it('Should return a Date (Female)', () => {
                 const bdt = Parser.cfToBirthDate('XXXYYY81A63');
-                //bdt.toISOString().should.be.equal('1981-01-23');
+                bdt.toISOString().substr(0, 10).should.be.equal('1981-01-23');
                 bdt.getDate().should.be.equal(23);
                 bdt.getMonth().should.be.equal(0);
             });
